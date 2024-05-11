@@ -105,6 +105,7 @@ h1{
 
 .btn-primary:hover {
     background-color: #445e49;
+    color: var(--bg-color);
 }
 
 .btn-secondary {

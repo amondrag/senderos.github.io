@@ -169,14 +169,24 @@ section {
 header{
     padding: 1rem 0.5rem;
     width: 100%;
-    z-index: 5;
+    z-index: 999;
+    position: absolute;
     background-color: #122315;
-    max-width: none;
+    /*max-width: none;
     margin-left: auto;
     margin-right: auto;
     padding: 18px 20px;
-    display: block;
+    display:flex ;
+    position: absolute;*/
+}
+
+header.sticky {
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    box-shadow: 0 0 10px rgba(29, 49, 36, 0.63);
 }
 
 .header_logo img{
@@ -191,7 +201,11 @@ header{
     font-size: 1.5rem;
     font-weight: 600;
     transition: color 0.3s;
-    color:  #fff;
+    color: #fff;
+}
+
+.sticky .header_menu li a {
+    color: #122315;
 }
 
 .header_menu li a:hover {
@@ -203,10 +217,9 @@ header .right {
 }
 
 .menu-btn {
-    display:flex;
+    display: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #fff;
 }
 
 
@@ -382,6 +395,7 @@ header .right {
     gap: 10%;
     align-items: center;
     border-bottom: 1px solid var(--divider--color);
+    padding-bottom: 20px;
 }
 
 .project:nth-child(2){
@@ -430,20 +444,20 @@ header .right {
 
 /* Define custom properties for each project for easy maintenance and adjustments */
 .project:nth-child(1) {
-    /* --border-color: #E0BC49;  Gold */
+    --border-color: #E0BC49; /* Gold;*/
     --button-border-color: var(--primary-color); /* Gold */
     --hover-color: #029782; /* Lighter Gold for hover */
 }
 
 
 .project:nth-child(2) {
-    /*--border-color: #DFD4C4; /* Light Beige */
+    --border-color: #DFD4C4; /* Light Beige */
     --button-border-color: var(--primary-color); /* Darker Beige */
     --hover-color: #029782; /* Lighter Beige for hover */
 }
 
 .project:nth-child(3) {
-    /*--border-color: #037964; /* Dark Green */
+    --border-color: #037964; /* Dark Green */
     --button-border-color: #037964; /* Dark Green */
     
     --hover-color: #029782; /* Lighter Green for hover */
@@ -457,7 +471,7 @@ header .right {
     width: 90%;
     height: 90%;
     border-radius:5px;
-    z-index: -1;
+    z-index: 1;
     border: 4px solid var(--border-color);
 }
 
@@ -603,6 +617,7 @@ header .right {
 /* FOOTER */
 footer {
     padding: 2rem 0;
+    background-color:  var(--bg-color);
 }
 
 .footer_content {
@@ -612,12 +627,13 @@ footer {
 }
 
 .footer_logo {
-    width: 100px;
-    margin-bottom: 1rem;
+    width: 150px;
+    margin-bottom: .5rem;
 }
 
 .footer_text {
     font-size: 0.9rem;
+    font-weight: 300;
     color: var(--secondary-color);
     margin-bottom: 1rem;
 }
@@ -651,34 +667,184 @@ footer {
     font-size: 0.8rem;
     color: #747474;
 }
+
+.footer_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #747474;
+    margin-top: 3rem;
+}
+
+.footer_bottom-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.facebook {
+    color: #3b5998;
+}
+
+.twitter {
+    color: #00acee;
+}
+
+.instagram {
+    color: #E4405f;
+}
+
+.linkedin {
+    color: #0e76a8;
+}
 /* MEDIA QUERIES */
 @media screen and (max-width: 768px) {
 
     /* GLOBAL */
 
-    
+    .container {
+        padding: 0 1rem;
+        
+    }
+
+    .section {
+        padding-top: 2rem !important ;
+        padding-bottom: 3rem !important;
+    }
+
+
+    .section-heading {
+        font-size: 2rem;
+    }
+
     /* HEADER */
 
+    .hero_content {
+        margin-top: 50px;
+    }
+    .header_menu {
+        position: fixed;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--bg-color);
+        transform: translateX(-100%);
+        transition: transform 0.3;
+    }
+    
+    .header_menu.show {
+        transform: translateX(0);
+    }
 
+    .header_menu li {
+        margin: 1rem 0;
+    }
+    
+    .header_menu li a{
+        color: var(--divider--color);
+    }
+
+    .menu-btn {
+        display: flex;
+        z-index: 99;
+        color: var(--bg-color);
+    }
+
+    .sticky .menu-btn {
+        color: var(--divider--color-color);
+    }
     /* HERO */
 
+    #hero {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hero_content{
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero_content h1{
+        font-size: 2.5rem;
+    }
+
+    .hero_content .btn {
+        margin: 0 auto;
+    }
+
+    .hero_img {
+        width: 100%;
+    }
 
     /* ABOUT */
 
+    .features {
+        grid-template-columns: repeat(1fr);
+    }
+
+    .feature {
+        padding: 1rem;
+    }
+
+    .about_details {
+        flex-direction: column;
+    }
+
+    .about_details-content, .about_details-img {
+        width: 100%;
+    }
 
     /* PROJECTS */
+    .project {
+        flex-direction: column !important;
+        gap: 2rem;
+    }
 
+    .project_img {
+        width:100%;
+        max-width: 300px;
+    }
 
     /* TEAM */
+    .members {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .member {
+        margin: 0 !important;
+    }
+
+    .member_img img {
+        max-width: 300px;
+    }
 
 
     /* TESTIMONIALS */
 
-
     /* CONTACT */
+    .contact {
+        flex-direction: column;
+    }
 
+    .contact_form, .contact_details {
+        width: 100%;
+    }
 
     /* FOOTER */
+    .footer_content {
+        grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
+    }
+
+    .footer_bottom {
+        flex-direction: column;
+        text-align: center;
+    }
 
 
 }
